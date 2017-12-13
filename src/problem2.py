@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Tyler Foster.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -73,6 +73,27 @@ def run_test_problem2a():
 
 
 def problem2a(circle, rectangle, window):
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.continue_on_mouse_click()
+    window.render()
+    point1x = rectangle.corner_1.x
+    point1y = rectangle.corner_1.y
+    point2x = rectangle.corner_2.x
+    point2y = rectangle.corner_2.y
+    window.continue_on_mouse_click()
+    point1 = rg.Point(point1x, point1y)
+    point2 = rg.Point(point2x, point2y)
+    line = rg.Line(point1, point2)
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circlefill = rectangle.outline_color
+    circle.fill_color = circlefill
+    window.render()
+
+
+
     """
     See   problem2a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -102,7 +123,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -144,6 +165,16 @@ def run_test_problem2b():
 
 
 def problem2b(rect, n, delta, win):
+    rect.attach_to(win)
+    for k in range(n):
+        corner_1_x = rect.get_upper_left_corner().x - k * delta
+        corner_2_x = rect.get_lower_right_corner().x + k * delta
+        corner_1_y = rect.get_upper_left_corner().y - k * delta
+        corner_2_y = rect.get_lower_right_corner().y + k * delta
+        rectangle = rg.Rectangle(rg.Point(corner_1_x,corner_1_y),rg.Point(corner_2_x,corner_2_y))
+        rectangle.attach_to(win)
+    win.render()
+
     """
     See   problem2b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -173,7 +204,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------

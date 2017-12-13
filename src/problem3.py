@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 3.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Tyler Foster.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -105,6 +105,22 @@ def run_test_problem3a():
 
 
 def problem3a(window, point, n):
+    t = 0
+    for k in range(n):
+        start_x = point.x + 20 * k
+        start_y = point.y + 10 * k
+        start = rg.Point(start_x, start_y)
+        end = rg.Point(start.x, start.y + 50)
+        line = rg.Line(start, end)
+        if k < 6:
+            line.thickness = (2 * k) + 1
+        else:
+            line.thickness = 13
+        t = t + line.thickness
+        line.attach_to(window)
+
+    window.render()
+    return t
     """
     See   problem3a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -137,7 +153,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -165,6 +181,19 @@ def run_test_problem3b():
 
 
 def problem3b(m, point1):
+    window = rg.RoseWindow(400, 650)
+    t = 0
+    x = point1.x
+    y = point1.y
+    for k in range(m):
+        y = y + 60
+        p2 = rg.Point(x, y)
+        p3a = problem3a(window, p2, 3 + (2 * k))
+        t = t + p3a
+
+    window.close_on_mouse_click()
+    return t
+
     """
     See   problem3b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
